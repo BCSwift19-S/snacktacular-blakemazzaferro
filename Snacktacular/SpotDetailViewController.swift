@@ -19,6 +19,8 @@ class SpotDetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     
     
     var spot: Spot!
@@ -30,15 +32,39 @@ class SpotDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Hide keyboard if we tap outside a field
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
         //mapView.delegate = self
         
         if spot == nil {
             spot = Spot()
             getLocation()
+            //add border to editable fields
+            nameField.addBorder(width: 0.5, radius: 5.0, color: .black)
+            addressField.addBorder(width: 0.5, radius: 5.0, color: .black)
+        } else {
+            //text fields should not be editable
+            nameField.isEnabled = false
+            addressField.isEnabled = false
+            nameField.backgroundColor = UIColor.clear
+            addressField.backgroundColor = UIColor.clear
+            
+            //hide save and cancel buttons
+            saveBarButton.title = ""
+            cancelBarButton.title = ""
+            
+            //hide toolbar so that lookup place isn't available
+            navigationController?.setToolbarHidden(true, animated: true)
         }
-        updateUserInterface()
+        
+        
+
         let region = MKCoordinateRegion(center: spot.coordinate, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
         mapView.setRegion(region, animated: true)
+        updateUserInterface()
     }
     
     func updateUserInterface() {
@@ -62,11 +88,27 @@ class SpotDetailViewController: UIViewController {
             navigationController?.popViewController(animated: true)
         }
     }
+    
+    @IBAction func textFieldEditingChanged(_ sender: UITextField) {
+        //setting - editing changed
+        saveBarButton.isEnabled = !(nameField.text == "")
+    }
+    
+    @IBAction func textFieldReturnPressed(_ sender: UITextField) {
+        //setting - primary action pressed
+        sender.resignFirstResponder()
+        spot.name = nameField.text!
+        spot.address = addressField.text!
+        updateUserInterface()
+    }
+    
+    
 
     @IBAction func photoButtonPressed(_ sender: UIButton) {
     }
     
     @IBAction func reviewButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "AddReview", sender: nil)
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
