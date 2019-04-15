@@ -317,16 +317,16 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="Su3-Y3-Zig">
                                                             <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="Dh5-N5-IJ1">
+                                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="Dh5-N5-IJ1">
                                                             <rect key="frame" x="17" y="0.0" width="15" height="15"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="7LK-bk-5gT">
+                                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="7LK-bk-5gT">
                                                             <rect key="frame" x="34" y="0.0" width="15" height="15"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="6wM-Ie-Ux4">
+                                                        <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="6wM-Ie-Ux4">
                                                             <rect key="frame" x="51" y="0.0" width="15" height="15"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="7pW-wt-2M2">
+                                                        <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="7pW-wt-2M2">
                                                             <rect key="frame" x="68" y="0.0" width="15" height="15"/>
                                                         </imageView>
                                                     </subviews>
@@ -354,6 +354,11 @@
                                         <connections>
                                             <outlet property="reviewTextLabel" destination="Eel-OE-mSk" id="Chf-K1-ixF"/>
                                             <outlet property="reviewTitleLabel" destination="J1Z-ix-Pxw" id="7oR-mx-Msu"/>
+                                            <outletCollection property="starImageCollection" destination="Su3-Y3-Zig" collectionClass="NSMutableArray" id="K6U-ja-Qpp"/>
+                                            <outletCollection property="starImageCollection" destination="Dh5-N5-IJ1" collectionClass="NSMutableArray" id="zvI-WK-xdb"/>
+                                            <outletCollection property="starImageCollection" destination="7LK-bk-5gT" collectionClass="NSMutableArray" id="qpp-qK-D7o"/>
+                                            <outletCollection property="starImageCollection" destination="6wM-Ie-Ux4" collectionClass="NSMutableArray" id="rS9-2F-X2w"/>
+                                            <outletCollection property="starImageCollection" destination="7pW-wt-2M2" collectionClass="NSMutableArray" id="veL-79-2Z3"/>
                                             <segue destination="npH-ou-J68" kind="show" identifier="ShowReview" id="dBo-tu-vZB"/>
                                         </connections>
                                     </tableViewCell>
@@ -456,7 +461,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="2Nb-j8-zlE">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="76" id="kzz-He-qgL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewCell" rowHeight="76" id="kzz-He-qgL">
                                         <rect key="frame" x="0.0" y="62" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kzz-He-qgL" id="l5B-9Z-oyV">

@@ -24,7 +24,7 @@ class SpotDetailViewController: UIViewController {
     
     
     var spot: Spot!
-    var reviews = [Review]()
+    var reviews: Reviews!
     let regionDistance: CLLocationDistance = 750
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation!
@@ -39,6 +39,8 @@ class SpotDetailViewController: UIViewController {
         self.view.addGestureRecognizer(tap)
         
         //mapView.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
         
         if spot == nil {
             spot = Spot()
@@ -60,12 +62,20 @@ class SpotDetailViewController: UIViewController {
             //hide toolbar so that lookup place isn't available
             navigationController?.setToolbarHidden(true, animated: true)
         }
-        
+        reviews = Reviews()
         
 
         let region = MKCoordinateRegion(center: spot.coordinate, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
         mapView.setRegion(region, animated: true)
         updateUserInterface()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reviews.loadData(spot: spot) {
+            self.tableView.reloadData()
+        }
+        
     }
     
     
@@ -84,7 +94,7 @@ class SpotDetailViewController: UIViewController {
             let destination = segue.destination as! ReviewTableViewController
             destination.spot = spot
             let selectedIndexPath = tableView.indexPathForSelectedRow!
-            destination.review = reviews[selectedIndexPath.row]
+            destination.review = reviews.reviewArray[selectedIndexPath.row]
         default:
             print("Did not have a segue in SDVC prepare")
         }
@@ -244,4 +254,18 @@ extension SpotDetailViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to get user location")
     }
+}
+
+extension SpotDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reviews.reviewArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! SpotReviewsTableViewCell
+        cell.review = reviews.reviewArray[indexPath.row]
+        return cell
+    }
+    
+    
 }
