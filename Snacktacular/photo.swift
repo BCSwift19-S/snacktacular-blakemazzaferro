@@ -1,5 +1,5 @@
 //
-//  Photo.swift
+//  photo.swift
 //  Snacktacular
 //
 //  Created by Blake Mazzaferro on 4/14/19.
@@ -22,5 +22,10 @@ class Photo {
         self.postedBy = postedBy
         self.date = date
         self.documentID = documentID
+    }
+    
+    convenience init(){
+        let postedBy = Auth.auth().currentUser?.email ?? "Unknown User"
+        self.init(image: UIImage(), description: "", postedBy: postedBy, date: Date(), documentID: "")
     }
 }
