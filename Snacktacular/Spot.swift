@@ -93,6 +93,7 @@ class Spot: NSObject, MKAnnotation {
                     print("Error creating new document")
                     completed(false)
                 } else {
+                    self.documentID = ref!.documentID
                     completed(true)
                 }
             }
