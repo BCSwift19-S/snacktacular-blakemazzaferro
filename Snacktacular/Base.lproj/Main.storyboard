@@ -684,13 +684,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="rql-r2-qdl">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="16c-vs-NEh">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="16c-vs-NEh">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="npH-ou-J68" id="mlY-ec-VCZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="vhK-gV-ie3">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="vhK-gV-ie3">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="npH-ou-J68" id="lmA-QW-cLR"/>
@@ -706,8 +706,8 @@
                         <outlet property="nameLabel" destination="jY6-9Q-oz6" id="BQj-4a-JzQ"/>
                         <outlet property="postedByLabel" destination="W9Z-gW-BGy" id="8Rr-wO-ctY"/>
                         <outlet property="reviewDateLabel" destination="g3N-dr-Jrn" id="gLv-d0-yHj"/>
-                        <outlet property="reviewTitle" destination="47w-wk-4oA" id="mgA-fY-hWI"/>
-                        <outlet property="reviewView" destination="53I-Qx-U9g" id="JWw-2l-ftA"/>
+                        <outlet property="reviewTextView" destination="53I-Qx-U9g" id="JWw-2l-ftA"/>
+                        <outlet property="reviewTitleField" destination="47w-wk-4oA" id="mgA-fY-hWI"/>
                         <outlet property="saveBarButton" destination="vhK-gV-ie3" id="qgi-NU-101"/>
                         <outletCollection property="starButtonCollection" destination="9bs-Sy-PPb" collectionClass="NSMutableArray" id="b9q-s7-SBn"/>
                         <outletCollection property="starButtonCollection" destination="5FT-1G-xZG" collectionClass="NSMutableArray" id="Y4Y-Hq-a5O"/>
